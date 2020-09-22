@@ -1,0 +1,5 @@
+---
+# vars file for docker_rehl8
+my_service: "docker"
+jenkins_iso: "rootritesh/jenkins:v1"
+centos_iso: "centos"

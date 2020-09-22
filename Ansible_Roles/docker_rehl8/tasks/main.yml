@@ -1,0 +1,32 @@
+---
+# tasks file for docker_rehl8
+- name: Docker repo
+  yum_repository:
+    name: "{{ my_service }}"
+    description: repo for docker
+    baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+    gpgcheck: no
+
+- name: Installing docker
+  command:
+    cmd: yum install docker-ce --nobest -y
+
+- name: Starting and enabling docker service
+  service:
+    name: "{{ my_service }}"
+    state: started
+    enabled: yes
+
+- name: conf pip for docker
+  pip:
+    name: docker-py
+
+- name: Pull centos docker iso
+  docker_image:
+    name: "{{ centos_iso }}"
+    source: pull
+
+- name: Pull rootritesh/jenkins docker iso
+  docker_image:
+    name: "{{ jenkins_iso }}"
+    source: pull    
